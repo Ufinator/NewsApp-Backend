@@ -15,7 +15,7 @@ app.secret_key = 'REPLACE THIS WITH THE TEXT ON THE INSTALL PAGE'
 #  REPLACE THIS WITH THE TEXT ON THE INSTALL PAGE!
 ##################################################################
 
-@app.route("/", methods=["POST"])
+@app.route("/", methods=["GET"])
 def getdata():
     result = get_news()
     return jsonify(result)
@@ -91,4 +91,4 @@ def install():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0", threaded=True)

@@ -14,7 +14,8 @@ def loginsys():
             port=json_file["port"],
             user=json_file["user"],
             password=json_file["password"],
-            database=json_file["database"]
+            database=json_file["database"],
+	    auth_plugin='mysql_native_password'
         )
         cursor = cnx.cursor()
         cursor.execute('SELECT * FROM login WHERE username = "admin"')
