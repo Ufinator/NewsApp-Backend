@@ -68,7 +68,7 @@ def dashboard():
                 if result.startswith("Error"):
                     return result
             for (news) in result:
-                for (id, txt) in news:
+                for (id, txt, unixtime) in news:
                     if id == str(1):
                         news1 = txt
                     elif id == str(2):

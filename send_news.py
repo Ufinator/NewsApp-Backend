@@ -1,5 +1,6 @@
 import mysql.connector
 import json
+import time
 
 from mysql.connector import errorcode
 
@@ -17,7 +18,8 @@ def send_news(notd, notw):
 	    auth_plugin='mysql_native_password'
         )
         cursor = cnx.cursor()
-        cursor.execute("""UPDATE news SET newstxt = %s WHERE newsid = '1'""", (notd,))
+        unix = round(time.time())
+        cursor.execute("""UPDATE news SET newstxt = %s, unixtime = %s WHERE newsid = '1'""", (notd, unix,))
         cursor.execute("""UPDATE news SET newstxt = %s WHERE newsid = '2'""", (notw,))
         cnx.commit()
         return "done"

@@ -1,5 +1,6 @@
 import mysql.connector
 import json
+import time
 
 from os import urandom
 from mysql.connector import errorcode
@@ -18,10 +19,11 @@ def inst():
 	    auth_plugin='mysql_native_password'
         )
         cursor = cnx.cursor()
+        unix = round(time.time())
         cursor.execute(f"CREATE TABLE login (username varchar(255), password varchar(255))")
         cursor.execute(f'INSERT INTO login (username, password) VALUES ("admin", "Sample1234")')
-        cursor.execute(f"CREATE TABLE news (newsid varchar(255), newstxt TEXT(65535))")
-        cursor.execute(f'INSERT INTO news (newsid, newstxt) VALUES ("1", "This is the news of the Day!")')
+        cursor.execute(f"CREATE TABLE news (newsid varchar(255), newstxt TEXT(65535), unixtime varchar(64))")
+        cursor.execute(f'INSERT INTO news (newsid, newstxt, unixtime) VALUES ("1", "This is the news of the Day!", {unix})')
         cursor.execute(f'INSERT INTO news (newsid, newstxt) VALUES ("2", "This is the news of the Week!")')
         cnx.commit()
         cnx.close()
@@ -34,8 +36,8 @@ def inst():
             return f"Error: Access denied to User {json_file['user']}. Maybe Password not correct..."
         elif e.errno == errorcode.ER_TABLE_EXISTS_ERROR:
             print(f"ERROR: {e}")
-            return 'Error: One table already exist! Can\'t proceed the install. Make sure, that the tables "Login", ' \
-                   '"News" and "blub" doesn\'t exist! '
+            return 'Error: One table already exist! Can\'t proceed the install. Make sure, that the tables "Login" and ' \
+                   '"News" doesn\'t exist! '
         elif e.errno == errorcode.ER_DBACCESS_DENIED_ERROR:
             print(f"ERROR: {e}")
             return f"Error: User {json_file['user']} has no Permission to access the Database {json_file['database']}"
