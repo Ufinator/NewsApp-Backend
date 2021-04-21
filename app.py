@@ -5,8 +5,9 @@ except ModuleNotFoundError:
 
 from loginsys import loginsys
 from send_news import send_news
-from fetch_news import get_news
-from flask import Flask, url_for, redirect, request, jsonify, render_template, session
+from fetch_news import get_news, get_config
+from flask import Flask, url_for, redirect, request, jsonify, render_template, session, abort
+import json
 
 app = Flask(__name__)
 ##################################################################
@@ -15,8 +16,12 @@ app.secret_key = 'REPLACE THIS WITH THE TEXT ON THE INSTALL PAGE'
 #  REPLACE THIS WITH THE TEXT ON THE INSTALL PAGE!
 ##################################################################
 
-@app.route("/", methods=["GET"])
-def getdata():
+@app.route("/api/<codepath>/", methods=["GET"])
+def getdata(codepath):
+    configcode = get_config()
+    for (configkey, code) in configcode:
+        if codepath != code:
+            abort(404)
     result = get_news()
     return jsonify(result)
 
@@ -53,27 +58,38 @@ def logout():
 def dashboard():
     if "username" in session:
         if session["username"] == "admin":
-            global news1, news2, done
+            global news1, news2, done, error
             if request.method == "POST":
                 default_value = "No Data available..."
-                result = send_news(request.form.get("notd", default_value), request.form.get("notw", default_value))
+                result = send_news(request.form.get("notd", default_value), request.form.get("notw", default_value), request.form.get("code"))
                 if result == "done":
                     done = True
+                    error = False
+                elif result == "codeerror":
+                    done = False
+                    error = True
                 else:
                     return result
             else:
                 done = False
+                error = False
             result = get_news()
+            codeconfig = get_config()
             if not type(result) is tuple:
                 if result.startswith("Error"):
-                    return result
+                    return result   
+            if not type(result) is tuple:
+                if result.startswith("Error"):
+                    return result  
             for (news) in result:
-                for (id, txt, unixtime) in news:
+                for (id, txt) in news:
                     if id == str(1):
                         news1 = txt
                     elif id == str(2):
                         news2 = txt
-            return render_template("dashboard.html", news1=news1, news2=news2, done=done)
+            for (configkey, code) in codeconfig:
+                code = code
+            return render_template("dashboard.html", news1=news1, news2=news2, done=done, code=code, error=error)
         else:
             session.pop("username")
             return redirect(url_for("login"))
@@ -91,4 +107,4 @@ def install():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", threaded=True)
+    app.run(host="0.0.0.0", threaded=True, debug=True)

@@ -5,7 +5,14 @@ import time
 from mysql.connector import errorcode
 
 
-def send_news(notd, notw):
+def send_news(notd, notw, code):
+    if len(code) != 6:
+        return "codeerror"
+    print(len(code))
+    try:
+        codeint = int(code)
+    except ValueError:
+        return "codeerror"
     with open("config.json") as file:
         json_file = json.load(file)
     try:
@@ -19,8 +26,9 @@ def send_news(notd, notw):
         )
         cursor = cnx.cursor()
         unix = round(time.time())
-        cursor.execute("""UPDATE news SET newstxt = %s, unixtime = %s WHERE newsid = '1'""", (notd, unix,))
-        cursor.execute("""UPDATE news SET newstxt = %s WHERE newsid = '2'""", (notw,))
+        cursor.execute("""UPDATE napp_news SET newstxt = %s WHERE newsid = '2'""", (notw,))
+        cursor.execute("""UPDATE napp_config SET configvalue = %s WHERE configkey = 'unixtime'""", (unix,))
+        cursor.execute("""UPDATE napp_config SET configvalue = %s WHERE configkey = 'code'""", (code,))
         cnx.commit()
         return "done"
     except mysql.connector.Error as e:

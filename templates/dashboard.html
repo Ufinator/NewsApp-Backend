@@ -10,6 +10,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+    {% if error %}
+    <div id="hmm" class="alert alert-danger" role="alert">
+      <b>Error!</b> The App code need to be numbers and need to be 6 digits long.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+           <span aria-hidden="true">
+              <i class="now-ui-icons ui-1_simple-remove"></i>
+          </span>
+      </button>
+    </div>
+    {% endif %}
     {% if done %}
     <div id="hmm" class="alert alert-success" role="alert">
         <div class="alert-icon">
@@ -31,6 +41,11 @@
       <div class="form-group">
         <label>News of the week</label>
         <textarea name="notw" type="text" class="form-control" placeholder="Enter news of the week" rows="2">{{ news2 }}</textarea>
+      </div>
+      <div class="form-group">
+        <label>App Code</label>
+        <input name="code" class="form-control" placeholder="App Code" value="{{ code }}">
+        <p style="color: red; font-size: small;">If you change this, everyone will logged out from his/her device and need to log with the news code in again</p>
       </div>
 
       <button type="submit" class="btn btn-primary">Submit</button>
