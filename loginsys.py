@@ -18,7 +18,7 @@ def loginsys():
 	    auth_plugin='mysql_native_password'
         )
         cursor = cnx.cursor()
-        cursor.execute('SELECT * FROM login WHERE username = "admin"')
+        cursor.execute('SELECT * FROM napp_login WHERE username = "admin"')
         result = cursor.fetchall()
         for (username, password) in result:
             passwd = password
