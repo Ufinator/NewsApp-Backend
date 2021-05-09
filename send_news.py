@@ -8,7 +8,6 @@ from mysql.connector import errorcode
 def send_news(notd, notw, code):
     if len(code) != 6:
         return "codeerror"
-    print(len(code))
     try:
         codeint = int(code)
     except ValueError:
@@ -22,10 +21,11 @@ def send_news(notd, notw, code):
             user=json_file["user"],
             password=json_file["password"],
             database=json_file["database"],
-	    auth_plugin='mysql_native_password'
+            auth_plugin='mysql_native_password'
         )
         cursor = cnx.cursor()
         unix = round(time.time())
+        cursor.execute("""UPDATE napp_news SET newstxt = %s WHERE newsid = '1'""", (notd,))
         cursor.execute("""UPDATE napp_news SET newstxt = %s WHERE newsid = '2'""", (notw,))
         cursor.execute("""UPDATE napp_config SET configvalue = %s WHERE configkey = 'unixtime'""", (unix,))
         cursor.execute("""UPDATE napp_config SET configvalue = %s WHERE configkey = 'code'""", (code,))

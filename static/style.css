@@ -1,17 +1,27 @@
 #editform {
     margin-left: 5%;
     margin-right: 5%;
-    margin-top: 3%;
 }
 
 .formlogin {
     margin-left: 5%;
     margin-right: 5%;
-    margin-top: 3%;
+    font-size: 125%;
 }
 
 #hmm {
     margin-left: 2%;
     margin-right: 2%;
     margin-top: 2%;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+}
+
+.titletext {
+    text-align: center;
 }

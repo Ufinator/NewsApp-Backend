@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News Manager</title>
+    <!-- CSS Files -->
+    <link href="{{ url_for('static', filename="assets/css/bootstrap.min.css") }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename="assets/css/now-ui-kit.css") }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename="style.css") }}" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <img src="{{ url_for('static', filename="assets/img/newsapplogo.png") }}" width="200"/>
+    <div class="titletext">
+        <h1>NewsApp | ???</h1>
+        <h3>If you want to access the dashboard, click <a href="/dashboard">here</a></h3>
+    </div>
+</body>
+</html>

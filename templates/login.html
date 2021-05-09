@@ -21,6 +21,8 @@
     </div>
     {% endif %}
 
+    <img src="{{ url_for('static', filename="assets/img/login.png") }}" width="250"/>
+
     <form class="formlogin" action="{{ url_for("login") }}" method="post">
       <div class="form-group">
         <label>Username</label>

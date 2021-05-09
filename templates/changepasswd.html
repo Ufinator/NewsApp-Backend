@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News Manager | Change password</title>
+    <!-- CSS Files -->
+    <link href="{{ url_for('static', filename="assets/css/bootstrap.min.css") }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename="assets/css/now-ui-kit.css") }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename="style.css") }}" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    {% if notsame %}
+    <div id="hmm" class="alert alert-danger" role="alert">
+        The repeated password doesn't match with the new password
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+            </span>
+        </button>
+    </div>
+    {% endif %}
+    {% if wrongpasswd %}
+    <div id="hmm" class="alert alert-danger" role="alert">
+        The old password is wrong.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+            </span>
+        </button>
+    </div>
+    {% endif %}
+    {% if done %}
+    <div id="hmm" class="alert alert-success" role="alert">
+        The password has been successfully changed! (You will be now logged out)
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+            </span>
+        </button>
+    </div>
+    {% endif %}
+
+    <img src="{{ url_for('static', filename="assets/img/changepasswd.png") }}" width="250"/>
+
+    <form class="formlogin" action="{{ url_for("changepasswd") }}" method="post">
+      <div class="form-group">
+        <label>Old password</label>
+        <input name="oldpasswd" type="password" class="form-control" placeholder="Enter old password">
+      </div>
+      <div class="form-group">
+        <label>New password</label>
+        <input name="newpasswd" type="password" class="form-control" placeholder="Enter new password">
+      </div>
+      <div class="form-group">
+        <label>Repeat the new password</label>
+        <input name="newpasswdagain" type="password" class="form-control" placeholder="Enter the new password again">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <a href="/dashboard/"><button type="button" class="btn btn-secondary">Dashboard</button></a>
+    </form>
+
+    <!-- Plugins -->
+
+    <!--   Core JS Files   -->
+    <script src="{{ url_for('static', filename="assets/js/core/jquery.min.js") }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename="assets/js/core/popper.min.js") }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename="assets/js/core/bootstrap.min.js") }}" type="text/javascript"></script>
+
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <script src="{{ url_for('static', filename="assets/js/plugins/bootstrap-switch.js") }}"></script>
+
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="{{ url_for('static', filename="assets/js/plugins/nouislider.min.js") }}" type="text/javascript"></script>
+
+    <script src="{{ url_for('static', filename="assets/js/plugins/bootstrap-datepicker.js") }}" type="text/javascript"></script>
+
+    <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
+    <script src="{{ url_for('static', filename="assets/js/now-ui-kit.js") }}" type="text/javascript"></script>
+</body>
+</html>

@@ -15,7 +15,7 @@ def loginsys():
             user=json_file["user"],
             password=json_file["password"],
             database=json_file["database"],
-	    auth_plugin='mysql_native_password'
+            auth_plugin='mysql_native_password'
         )
         cursor = cnx.cursor()
         cursor.execute('SELECT * FROM napp_login WHERE username = "admin"')

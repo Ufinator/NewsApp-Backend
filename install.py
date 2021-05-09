@@ -16,11 +16,11 @@ def inst():
             user=json_file["user"],
             password=json_file["password"],
             database=json_file["database"],
-	    auth_plugin='mysql_native_password'
+            auth_plugin='mysql_native_password'
         )
         cursor = cnx.cursor()
         unix = round(time.time())
-        cursor.execute(f"CREATE TABLE napp_login (username varchar(255), password varchar(255))")
+        cursor.execute(f"CREATE TABLE napp_login (username varchar(255), password TEXT(65535))")
         cursor.execute(f'INSERT INTO napp_login (username, password) VALUES ("admin", "Sample1234")')
         cursor.execute(f"CREATE TABLE napp_news (newsid varchar(255), newstxt TEXT(65535))")
         cursor.execute(f'INSERT INTO napp_news (newsid, newstxt) VALUES ("1", "This is the news of the Day!")')

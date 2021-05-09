@@ -33,6 +33,7 @@
         </button>
     </div>
     {% endif %}
+    <img src="{{ url_for('static', filename="assets/img/dashboard.png") }}" width="250"/>
     <form id="editform" action="{{ url_for('dashboard') }}" method="post">
       <div class="form-group">
         <label>News of the day</label>
@@ -48,7 +49,8 @@
         <p style="color: red; font-size: small;">If you change this, everyone will logged out from his/her device and need to log with the news code in again</p>
       </div>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-success">Submit</button>
+      <a href="/changepasswd"><button type="button" class="btn btn-secondary">Change password</button></a>
       <a href="{{ url_for("logout") }}"><button type="button" class="btn btn-danger">Logout</button></a>
     </form>
 
