@@ -19,7 +19,7 @@ the application can be set by the administrator and the users will get a notific
 
 __NewsApp-Backend__ is a script, that you can run and the 
 __[NewsApp (Application)](https://github.com/Ufinator/NewsApp)__ will fetch the news data from your server. 
-The backend script includes also the front-end (Website) to manage the news.
+The backend script includes also an front-end (Website) to manage the news.
 
 <div align="center">
 
@@ -27,6 +27,7 @@ The backend script includes also the front-end (Website) to manage the news.
 ▶ Display news directly to the phone! <br>
 ▶ Simple website where the administrator can change the news <br>
 ▶ Dashboard is secured with a login page - No one can access it without the password <br>
+▶ Two seperated news fields: one for the day and one for the week! <br>
 
 # Documentation
 ## In progress...
