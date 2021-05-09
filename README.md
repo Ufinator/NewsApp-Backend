@@ -8,7 +8,7 @@
 # About
 </div>
 
-__NewsApp__ is a simple App, that is displaying the current news for the school or business. Every news field in 
+__NewsApp__ is a simple App, that can displaying the current news from the school or business. Every news field in 
 the application can be set by the administrator and the users will get a notification after an update. Stay tuned!
 
 <div align="center">
