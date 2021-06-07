@@ -20,7 +20,7 @@ the application can be set by the administrator and the users will get a notific
 </div>
 
 __NewsApp-Backend__ is a script, that you can run and the 
-__[NewsApp (Application)](https://github.com/Ufinator/NewsApp)__ will fetch the news data from your server. 
+__[NewsApp (Application)](https://play.google.com/store/apps/details?id=net.ufinator.newsapp)__ will fetch the news data from your server. 
 The backend script includes also an front-end (Website) to manage the news.
 
 <div align="center">
